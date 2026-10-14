@@ -1,4 +1,4 @@
-import logoUna from '../assets/Una-Puno.jpg';
+import logoUna from '../assets/UNA-Puno.jpg';
 
 export const Header = () => {
   return (
