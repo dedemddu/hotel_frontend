@@ -27,10 +27,11 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Configuración de rutas para React + Vite ######
-          app_location: "/" # Raíz de tu repositorio del frontend
-          api_location: "" # Se deja vacío porque tu API está en el App Service
-          output_location: "dist" # Carpeta de producción que genera Vite
+          app_location: "/" 
+          api_location: "" 
+          output_location: "dist"
+        env:
+          VITE_API_BASE_URL: "https://api-hotel-reserva-mddu-gxh6fncsc3fparf0.canadaeast-01.azurewebsites.net/api"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -40,13 +41,6 @@ jobs:
       - name: Close Job
         id: closejob
         uses: Azure/static-web-apps-deploy@v1
-       with:
+        with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
-          app_location: "/" 
-          api_location: "" 
-          output_location: "dist"
-        ####### AGREGA ESTAS LÍNEAS JUSTO AQUÍ #######
-        env:
-          VITE_API_BASE_URL: "https://api-hotel-reserva-mddu-gxh6fncsc3fparf0.canadaeast-01.azurewebsites.net/api"
+          action: "close"
